@@ -12,6 +12,7 @@ import { expenseRoutes } from './routes/expenses.routes';
 import { categoriesRoutes } from './routes/categories.routes';
 import { lessonRoutes } from './routes/lessons.routes';
 import initializeDatabase from './initialize';
+import { VercelRequest, VercelResponse } from '@vercel/node';
 
 dotenv.config({
     path: '.env',
@@ -48,4 +49,6 @@ app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
 
-export default app;
+export default (req: VercelRequest, res: VercelResponse) => {
+    app(req as any, res as any);
+  };
